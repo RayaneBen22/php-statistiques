@@ -30,7 +30,7 @@ if ($moyenne < 10) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord académique</title>
 
-    <style>
+        <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f6f7;
@@ -60,6 +60,31 @@ if ($moyenne < 10) {
             color: #2980b9;
             border-bottom: 1px solid #eeeeee;
             padding-bottom: 12px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
         }
     </style>
 </head>
@@ -92,6 +117,55 @@ if ($moyenne < 10) {
                     <?php echo $mention; ?>
                 </span>
             </p>
+        </section>
+        <section>
+            <h2>Partie 2 : Relevé de notes par module</h2>
+
+            <?php
+
+            $modules = [
+                "PHP / MySQL",
+                "Réseaux",
+                "Algorithmique",
+                "UML",
+                "Anglais"
+            ];
+            ?>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Module</th>
+                            <th scope="col">Note / 20</th>
+                            <th scope="col">Appréciation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        
+                        for ($i = 0; $i < count($modules); $i++) {
+                            $note = rand(8, 20);
+
+                            $appreciation = $note > 10 ? "Validé" : "Non validé";
+                            $couleurNote = $note > 10 ? "darkgreen" : "red";
+                        ?>
+                            <tr>
+                                <td><?php echo $i + 1; ?></td>
+                                <td><?php echo $modules[$i]; ?></td>
+                                <td><?php echo $note; ?></td>
+                                <td style="color: <?php echo $couleurNote; ?>;">
+                                    <?php echo $appreciation; ?>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
     
