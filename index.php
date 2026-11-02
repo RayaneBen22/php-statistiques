@@ -167,6 +167,72 @@ if ($moyenne < 10) {
                 </table>
             </div>
         </section>
+        <section>
+            <h2>Partie 3 : Statistiques de la classe</h2>
+
+            <?php
+            $effectif = 15;
+            $somme = 0;
+            $noteMin = 20;
+            $noteMax = 5;
+            $valides = 0;
+            $ajournes = 0;
+            $i = 0;
+
+            while ($i < $effectif) {
+                $noteClasse = rand(5, 20);
+                $somme += $noteClasse;
+
+                if ($noteClasse < $noteMin) {
+                    $noteMin = $noteClasse;
+                }
+
+                if ($noteClasse > $noteMax) {
+                    $noteMax = $noteClasse;
+                }
+
+                if ($noteClasse > 10) {
+                    $valides++;
+                } else {
+                    $ajournes++;
+                }
+
+                $i++;
+            }
+
+            $moyenneClasse = $somme / $effectif;
+            ?>
+
+            <p>
+                <strong>Effectif total :</strong>
+                <?php echo $effectif; ?> étudiants
+            </p>
+
+            <p>
+                <strong>Moyenne générale de la classe :</strong>
+                <?php echo number_format($moyenneClasse, 2, ",", " "); ?> / 20
+            </p>
+
+            <p>
+                <strong>Note maximale :</strong>
+                <?php echo $noteMax; ?> / 20
+            </p>
+
+            <p>
+                <strong>Note minimale :</strong>
+                <?php echo $noteMin; ?> / 20
+            </p>
+
+            <p style="color: darkgreen;">
+                <strong>Étudiants validés (note &gt; 10) :</strong>
+                <?php echo $valides; ?>
+            </p>
+
+            <p style="color: red;">
+                <strong>Étudiants ajournés (note ≤ 10) :</strong>
+                <?php echo $ajournes; ?>
+            </p>
+        </section>
 
     
     </main>
