@@ -86,6 +86,11 @@ if ($moyenne < 10) {
         tbody tr:nth-child(even) {
             background-color: #f8f9fa;
         }
+                .message-action {
+            background-color: #eef4f7;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+        }
     </style>
 </head>
 
@@ -231,6 +236,39 @@ if ($moyenne < 10) {
             <p style="color: red;">
                 <strong>Étudiants ajournés (note ≤ 10) :</strong>
                 <?php echo $ajournes; ?>
+            </p>
+        </section>
+                <section>
+            <h2>Partie 4 : Actions administratives</h2>
+
+            <?php
+            // Choisir l'action administrative.
+            $action = "trier_merite";
+
+            // Déterminer le message correspondant à l'action.
+            switch ($action) {
+                case "trier_merite":
+                    $message = "Tri par ordre de mérite activé : du major au dernier.";
+                    break;
+
+                case "trier_alphabetique":
+                    $message = "Tri par ordre alphabétique activé.";
+                    break;
+
+                default:
+                    $message = "Affichage par défaut : aucune action sélectionnée.";
+                    break;
+            }
+            ?>
+
+            <p>
+                <strong>Action demandée :</strong>
+                <?php echo htmlspecialchars($action, ENT_QUOTES, "UTF-8"); ?>
+            </p>
+
+            <p class="message-action">
+                <strong>Traitement :</strong>
+                <?php echo $message; ?>
             </p>
         </section>
 
